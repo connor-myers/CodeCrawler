@@ -1,4 +1,5 @@
 from urllib.parse import urlparse, urlunparse
+from urllib.request import urlopen
 
 github_domain = "github.com"
 github_raw_domain = "raw.githubusercontent.com"
@@ -30,3 +31,14 @@ def convert_github_to_raw_github(link):
 
 def convert_raw_github_to_github(link):
     return None
+
+def convert_url_to_path(link):
+    parsed_url = urlparse(link)
+    return parsed_url.path.replace('/', '_')[1:]
+
+def read_url_contents(link):
+    try:
+        opened_url = urlopen(link)
+    except:
+        raise InvalidLinkError(link)
+    return opened_url.read().decode("utf-8")
