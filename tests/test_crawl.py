@@ -11,5 +11,14 @@ class TestCrawl(unittest.TestCase):
         if fc.source is None or len(fc.source) == 0:
             self.fail("Source code not downloaded properly")
 
+    def test_get_code(self):
+        url = "https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/Class.java"
+
+        fc = FileCrawler(url, use_cache=True)
+
+        md = fc.get_method_data("getResourceAsStream", False)
+
+        print(md[0].code)
+
 if __name__ == "__main__":
     unittest.main()
