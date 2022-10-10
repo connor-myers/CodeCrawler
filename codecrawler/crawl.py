@@ -6,6 +6,8 @@ import os.path
 from codecrawler.url import *
 from codecrawler.cache import FileCache
 
+from codecrawler.clean import clean_method_data
+
 from enum import Enum
 
 import javalang
@@ -63,6 +65,7 @@ class FileCrawler():
             md = MethodData(code, documentation)
 
             if md is not None:
+                md = clean_method_data(md)
                 method_data.append(md)
 
         return method_data
@@ -89,9 +92,9 @@ class FileCrawler():
         code = '\n'.join(code)
 
         if self.file_class_type == ClassType.INTERFACE:
-            return code[0:code.rfind(';')+1].rstrip()
+            return code[0:code.rfind(';')+1].strip()
         else:
-            return code[0:code.find("/**")].rstrip()
+            return code[0:code.find("/**")].strip()
 
     def __get_method_margins(self, method_node):
         startpos  = None
