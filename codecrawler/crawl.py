@@ -97,8 +97,10 @@ class FileCrawler():
             code = code[0:code.find("/**")].strip()
 
         split = code.split(' ')
-        if split[-1].startswith("@"):
-            del split[-1]
+
+        # pain
+        split[-1] = split[-1][0:split[-1].find("@")]
+
         return ' '.join(split)
             
     def __get_method_margins(self, method_node):
