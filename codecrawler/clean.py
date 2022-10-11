@@ -26,6 +26,9 @@ def clean_method_data(md):
     return md
 
 def clean_code(code):
+    if code is None:
+        return ""
+        
     clean = remove_comments(code)
 
     for search, replacement in code_replacements:
@@ -42,6 +45,9 @@ def remove_comments(string):
     return string
 
 def clean_javadoc(javadoc):
+    if javadoc is None:
+        return ""
+
     clean = javadoc
     for search, replacement in javadoc_replacements:
         clean = clean.replace(search, replacement)
