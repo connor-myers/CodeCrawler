@@ -7,7 +7,7 @@ setup(
     author_email='connor-j-myers@protonmail.com',
     packages=['codecrawler'],
     install_requires=['requests', 'javalang'],
-    version='0.2',
+    version='0.21',
     license='MIT',
     description='Grabs Java code and documentation from GitHub repositories'
 )
