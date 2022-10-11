@@ -92,7 +92,7 @@ class FileCrawler():
         code = '\n'.join(code)
 
         if self.file_class_type == ClassType.INTERFACE:
-            return code[0:code.rfind(';')+1].strip()
+            return code[0:code.find(';')+1].strip()
         else:
             return code[0:code.find("/**")].strip()
 
