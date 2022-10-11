@@ -92,13 +92,15 @@ class FileCrawler():
         code = '\n'.join(code)
 
         if self.file_class_type == ClassType.INTERFACE:
-            return code[0:code.find(';')+1].strip()
+            code = code[0:code.find(';')+1].strip()
         else:
             code = code[0:code.find("/**")].strip()
-            split = code.split(' ')
-            if split[-1].startswith("@"):
-                del split[-1]
-            return ' '.join(split)
+
+        split = code.split(' ')
+        if split[-1].startswith("@"):
+            del split[-1]
+        return ' '.join(split)
+            
     def __get_method_margins(self, method_node):
         startpos  = None
         endpos    = None
