@@ -62,9 +62,6 @@ class FileCrawler():
             documentation = method_node.documentation
             code = self.__get_method_code(method_node)
 
-            if documentation is None:
-                documentation = ""
-
             md = MethodData(code, documentation)
 
             if md is not None:
@@ -139,9 +136,6 @@ class MethodData():
     def __init__(self, code, javadoc):
         self.code = code
         self.javadoc = javadoc
-
-        if self.javadoc is None:
-            self.javadoc = ""
 
 class BadJavaFileError(Exception):
     def __init__(self, link):
