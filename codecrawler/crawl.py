@@ -134,9 +134,11 @@ class FileCrawler():
 
 class MethodData():
     def __init__(self, code, javadoc):
-        # need to clean
         self.code = code
         self.javadoc = javadoc
+
+        if self.javadoc is None:
+            self.javadoc = ""
 
 class BadJavaFileError(Exception):
     def __init__(self, link):
